@@ -18,6 +18,7 @@ uptime	0d 16h 39m
 | janet | 30 |
 | deno | 31 |
 | lua | 33 |
+| go | 46 |
 | rust | 61 |
 
 note that the lua script is incomplete as lua cannot natively list a directory's files
