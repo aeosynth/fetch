@@ -16,8 +16,9 @@ for f in os.listdir('/proc'):
         tasks += 1
 
 mem = read('/proc/meminfo').split('\n')
-total = int(float(mem[0].split()[1]) / 1000)
-avail = int(float(mem[2].split()[1]) / 1000)
+def getsize(s): return int(s.split()[1]) // 1000
+total = getsize(mem[0])
+avail = getsize(mem[2])
 
 uptime = float(read('/proc/uptime').split()[0])
 d = int(uptime / 60 / 60 / 24)

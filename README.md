@@ -15,7 +15,8 @@ uptime	0d 16h 39m
 | - | - |
 | bash | 23 |
 | kotlin | 25 |
-| python | 27 |
+| ruby | 26 |
+| python | 28 |
 | janet | 30 |
 | deno | 31 |
 | lua | 33 |
