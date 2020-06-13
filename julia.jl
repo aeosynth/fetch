@@ -3,7 +3,6 @@ host = readlines("/etc/hostname")[1]
 kernel = split(readlines("/proc/version")[1])[3]
 term = ENV["TERM"]
 shell = ENV["SHELL"]
-
 tasks = length(filter(x -> isa(tryparse(Int, x), Int), readdir("/proc")))
 
 mem = readlines("/proc/meminfo")

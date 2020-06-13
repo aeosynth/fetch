@@ -5,11 +5,7 @@ val host = File("/etc/hostname").readLines()[0]
 val kernel = File("/proc/version").readText().split(' ')[2]
 val term = System.getenv("TERM")
 val shell = System.getenv("SHELL")
-
-var tasks = 0
-File("/proc").list().forEach {
-  if (it.toIntOrNull() != null) tasks += 1
-}
+val tasks = File("/proc").list().count { it.toIntOrNull() != null }
 
 val mem = File("/proc/meminfo").readLines()
 fun getSize(s: String) = s.split(Regex("\\s+"))[1].toInt() / 1000

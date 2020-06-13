@@ -9,11 +9,7 @@ host = read('/etc/hostname').rstrip()
 kernel = read('/proc/version').split()[2]
 term = os.environ['TERM']
 shell = os.environ['SHELL']
-
-tasks = 0
-for f in os.listdir('/proc'):
-    if f.isdigit():
-        tasks += 1
+tasks = len(os.listdir('/proc').filter(lambda x: x.isdigit()))
 
 mem = read('/proc/meminfo').split('\n')
 def getsize(s): return int(s.split()[1]) // 1000

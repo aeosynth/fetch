@@ -1,26 +1,16 @@
-(defn read [path]
-  (let [f (file/open path)
-        b (file/read f :all)]
-    (file/close f)
-    b))
-
 (let [user (os/getenv "USER")
-      host (read "/etc/hostname")
-      kernel (->> (read "/proc/version") (string/split " ") 2)
+      host (slurp "/etc/hostname")
+      kernel (->> (slurp "/proc/version") (string/split " ") 2)
       term (os/getenv "TERM")
       shell (os/getenv "SHELL")
-      [total _ avail] (->> (read "/proc/meminfo") (string/split "\n"))
-      uptime (->> (read "/proc/uptime") (string/split ".") 0 int/u64)]
+      tasks (length (filter scan-number (os/dir "/proc")))
+      mem (->> (slurp "/proc/meminfo") (string/split "\n"))
+      uptime (->> (slurp "/proc/uptime") (string/split ".") 0 int/u64)]
 
-  (var tasks 0)
-  (each path (os/dir "/proc")
-        (if (scan-number path)
-          (++ tasks)))
-
-  (defn matches [s] (peg/match '(some (+ (<- :d+) 1)) s))
-  (def get-size (comp |(/ $ 1000) int/u64 0 |(matches $)))
-  (def total (get-size total))
-  (def avail (get-size avail))
+  (defn split [s] (filter (comp not empty?) (string/split " " s)))
+  (def get-size (comp |(/ $ 1000) int/u64 1 split))
+  (def total (get-size (mem 0)))
+  (def avail (get-size (mem 2)))
 
   (def d (-> uptime (/ 60 60 24)))
   (def h (-> uptime (/ 60 60) (% 24)))

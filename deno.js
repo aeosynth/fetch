@@ -10,13 +10,7 @@ const host = readFile("/etc/hostname").trimRight();
 const kernel = readFile("/proc/version").split(" ")[2];
 const term = Deno.env.get("TERM");
 const shell = Deno.env.get("SHELL");
-
-let tasks = 0;
-for (const dirEntry of Deno.readDirSync("/proc")) {
-  if (Number(dirEntry.name)) {
-    tasks++;
-  }
-}
+const tasks = Array.from(Deno.readDirSync("/proc")).filter(x => Number(x.name)).length;
 
 const mem = readFile("/proc/meminfo").split("\n");
 const total = Math.floor(Number(mem[0].match(/\d+/)[0]) / 1000);

@@ -3,13 +3,7 @@ host = File.read("/etc/hostname").strip()
 kernel = File.read("/proc/version").split()[2]
 term = ENV['TERM']
 shell = ENV['SHELL']
-
-tasks = 0
-Dir.foreach("/proc") do |it|
-  if it.to_i != 0
-    tasks += 1
-  end
-end
+tasks = Dir.entries("/proc").count { |x| x.to_i != 0 }
 
 mem = File.read("/proc/meminfo").lines()
 def getsize(s) s.split()[1].to_i / 1000 end

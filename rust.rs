@@ -43,13 +43,13 @@ fn main() {
     let term = var("TERM").unwrap();
     let shell = var("SHELL").unwrap();
 
-    let mut tasks = 0;
-    for entry in read_dir("/proc").unwrap() {
-        let name = entry.unwrap().file_name().into_string().unwrap();
-        if name.chars().all(|c| c.is_digit(10)) {
-            tasks += 1;
-        }
-    }
+    let tasks = read_dir("/proc")
+        .unwrap()
+        .filter(|entry| {
+            let name = entry.as_ref().unwrap().file_name().into_string().unwrap();
+            name.chars().all(|c| c.is_digit(10))
+        })
+        .count();
 
     let (total, avail) = mem();
     let (d, h, m) = uptime();

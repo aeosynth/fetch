@@ -14,12 +14,12 @@ uptime	0d 16h 39m
 | language | sloc |
 | - | - |
 | julia | 21 |
+| ruby | 21 |
+| janet | 22 |
+| kotlin | 22 |
 | bash | 23 |
-| kotlin | 25 |
-| ruby | 26 |
-| python | 28 |
-| janet | 30 |
-| deno | 31 |
+| python | 25 |
+| deno | 26 |
 | lua | 33 |
 | go | 46 |
 | rust | 61 |
