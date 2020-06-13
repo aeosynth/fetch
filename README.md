@@ -13,6 +13,7 @@ uptime	0d 16h 39m
 
 | language | sloc |
 | - | - |
+| julia | 21 |
 | bash | 23 |
 | kotlin | 25 |
 | ruby | 26 |
