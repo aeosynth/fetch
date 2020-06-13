@@ -14,6 +14,7 @@ uptime	0d 16h 39m
 | language | sloc |
 | - | - |
 | bash | 23 |
+| kotlin | 25 |
 | python | 27 |
 | janet | 30 |
 | deno | 31 |
