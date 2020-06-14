@@ -21,10 +21,7 @@ uptime	0d 16h 39m
 | python | 25 |
 | deno | 26 |
 | nim | 26 |
-| lua | 33 |
 | go | 46 |
 | rust | 61 |
-
-note that the lua script is incomplete as lua cannot natively list a directory's files
 
 the deno script must be run with `deno run --allow-env --allow-read deno.js`
