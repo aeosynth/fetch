@@ -20,6 +20,7 @@ uptime	0d 16h 39m
 | bash | 23 |
 | python | 25 |
 | deno | 26 |
+| nim | 26 |
 | lua | 33 |
 | go | 46 |
 | rust | 61 |
