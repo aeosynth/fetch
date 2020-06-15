@@ -1,12 +1,12 @@
 user = ENV["USER"]
-host = File.read("/etc/hostname").strip()
-kernel = File.read("/proc/version").split()[2]
+host = File.read("/etc/hostname").strip
+kernel = File.read("/proc/version").split[2]
 term = ENV["TERM"]
 shell = ENV["SHELL"]
 tasks = Dir.entries("/proc").count { |x| x.to_i != 0 }
 
-mem = File.read("/proc/meminfo").lines()
-def getsize(s) s.split()[1].to_i / 1000 end
+mem = File.read("/proc/meminfo").lines
+def getsize(s) s.split[1].to_i / 1000 end
 total = getsize(mem[0])
 avail = getsize(mem[2])
 
