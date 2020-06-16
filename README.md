@@ -21,7 +21,7 @@ uptime	0d 16h 39m
 | janet | 22 |
 | kotlin | 22 |
 | bash | 23 |
-| python | 25 |
+| python | 23 |
 | nim | 26 |
 | go | 46 |
 | rust | 61 |

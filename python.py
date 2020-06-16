@@ -4,12 +4,10 @@ def read(path):
     with open(path) as f:
         return f.read()
 
-user = os.environ['USER']
+user, term, shell = [os.environ[x] for x in ["USER", "TERM", "SHELL"]]
 host = read('/etc/hostname').rstrip()
 kernel = read('/proc/version').split()[2]
-term = os.environ['TERM']
-shell = os.environ['SHELL']
-tasks = len(os.listdir('/proc').filter(lambda x: x.isdigit()))
+tasks = len([x for x in os.listdir('/proc') if x.isdigit()])
 
 mem = read('/proc/meminfo').split('\n')
 def getsize(s): return int(s.split()[1]) // 1000
