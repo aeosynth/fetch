@@ -1,8 +1,6 @@
-user = ENV["USER"]
+user, term, shell = ENV.values_at("USER", "TERM", "SHELL")
 host = File.read("/etc/hostname").strip
 kernel = File.read("/proc/version").split[2]
-term = ENV["TERM"]
-shell = ENV["SHELL"]
 tasks = Dir.entries("/proc").count { |x| x.to_i != 0 }
 
 mem = File.read("/proc/meminfo").lines

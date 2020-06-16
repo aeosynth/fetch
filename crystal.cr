@@ -1,8 +1,6 @@
-user = ENV["USER"]
+user, term, shell = ENV.to_h.select("USER", "TERM", "SHELL").values
 host = System.hostname
 kernel = File.read("/proc/version").split[2]
-term = ENV["TERM"]
-shell = ENV["SHELL"]
 tasks = Dir.entries("/proc").count { |x| x.to_i? }
 
 mem = File.read("/proc/meminfo").lines

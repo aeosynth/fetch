@@ -13,10 +13,10 @@ uptime	0d 16h 39m
 
 | language | sloc |
 | - | - |
+| crystal | 19 |
+| ruby | 19 |
 | deno | 20 |
-| crystal | 21 |
 | julia | 21 |
-| ruby | 21 |
 | janet | 22 |
 | kotlin | 22 |
 | bash | 23 |
