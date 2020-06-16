@@ -1,25 +1,18 @@
-function readFile(path) {
-  const file = Deno.openSync(path, { read: true });
-  const buf = Deno.readAllSync(file);
-  Deno.close(file.rid);
-  return new TextDecoder().decode(buf);
-}
+const { SHELL: shell, TERM: term, USER: user } = Deno.env.toObject();
+const host = Deno.readTextFileSync("/etc/hostname").trimRight();
+const kernel = Deno.readTextFileSync("/proc/version").split(" ")[2];
+const tasks =
+  Array.from(Deno.readDirSync("/proc")).filter((x) => Number(x.name)).length;
 
-const user = Deno.env.get("USER");
-const host = readFile("/etc/hostname").trimRight();
-const kernel = readFile("/proc/version").split(" ")[2];
-const term = Deno.env.get("TERM");
-const shell = Deno.env.get("SHELL");
-const tasks = Array.from(Deno.readDirSync("/proc")).filter(x => Number(x.name)).length;
+const mem = Deno.readTextFileSync("/proc/meminfo").split("\n");
+const getsize = (s) => Math.floor(Number(s.match(/\d+/)) / 1000);
+const total = getsize(mem[0]);
+const avail = getsize(mem[2]);
 
-const mem = readFile("/proc/meminfo").split("\n");
-const total = Math.floor(Number(mem[0].match(/\d+/)[0]) / 1000);
-const avail = Math.floor(Number(mem[2].match(/\d+/)[0]) / 1000);
-
-const uptime = Number(readFile("/proc/uptime").split(" ")[0]);
-const days = Math.floor(uptime / 60 / 60 / 24);
-const hours = Math.floor(uptime / 60 / 60) % 24;
-const minutes = Math.floor(uptime / 60) % 60;
+const uptime = Number(Deno.readTextFileSync("/proc/uptime").split(" ")[0]);
+const d = Math.floor(uptime / 60 / 60 / 24);
+const h = Math.floor(uptime / 60 / 60 % 24);
+const m = Math.floor(uptime / 60 % 60);
 
 console.log(`${user}@${host}
 kernel\t${kernel}
@@ -27,4 +20,4 @@ term\t${term}
 shell\t${shell}
 tasks\t${tasks}
 mem\t${avail}m / ${total}m
-uptime\t${days}d ${hours}h ${minutes}m`);
+uptime\t${d}d ${h}h ${m}m`);
