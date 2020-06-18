@@ -29,4 +29,4 @@ uptime	0d 16h 39m
 
 the deno script must be run with `deno run --allow-env --allow-read deno.js`
 
-for most languages the code size is determined by use of imports and whether files are closed automatically after reading
+for most languages the code size is determined by use of imports, and whether a `main` function is needed
