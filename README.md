@@ -23,6 +23,7 @@ uptime	0d 16h 39m
 | bash | 23 |
 | python | 23 |
 | nim | 26 |
+| csharp | 30 |
 | go | 46 |
 | rust | 61 |
 
