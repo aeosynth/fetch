@@ -14,6 +14,7 @@ uptime	0d 16h 39m
 | language | sloc |
 | - | - |
 | crystal | 19 |
+| raku | 19 |
 | ruby | 19 |
 | deno | 20 |
 | node | 20 |
