@@ -10,5 +10,5 @@ echo 'kernel	'`{uname -r}
 echo 'term	'$TERM
 echo 'shell	'$SHELL
 echo 'tasks	'`{ps -aux | wc -l}
-echo 'mem	'$mem(3)' / '$mem(2)
+echo 'mem	'$mem(3)'/ '$mem(2)
 echo 'uptime	'$days'd '$hours'h '$minutes'm'
