@@ -17,6 +17,7 @@ uptime	0d 16h 39m
 | raku | 19 |
 | ruby | 19 |
 | deno | 20 |
+| es | 13 |
 | node | 20 |
 | julia | 21 |
 | janet | 22 |
