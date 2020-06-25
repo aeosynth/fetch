@@ -18,6 +18,7 @@ uptime	0d 16h 39m
 | ruby | 19 |
 | deno | 20 |
 | node | 20 |
+| r | 20 |
 | julia | 21 |
 | janet | 22 |
 | kotlin | 22 |
