@@ -1,5 +1,4 @@
-import os
-import strutils
+import os, strutils
 
 let user = getEnv("USER")
 let host = readFile("/etc/hostname")
@@ -13,7 +12,7 @@ for _, path in walkDir("/proc", true):
         tasks += 1
 
 let mem = readFile("/proc/meminfo").splitLines()
-proc getsize(s: string): int = toInt(parseInt(s.splitWhitespace()[1]) / 1000)
+proc getsize(s: string): int = parseInt(s.splitWhitespace()[1]) div 1000
 let total = getsize(mem[0])
 let avail = getsize(mem[2])
 

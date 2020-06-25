@@ -23,7 +23,7 @@ uptime	0d 16h 39m
 | kotlin | 22 |
 | bash | 23 |
 | python | 23 |
-| nim | 26 |
+| nim | 25 |
 | csharp | 30 |
 | go | 46 |
 | rust | 61 |
@@ -31,3 +31,17 @@ uptime	0d 16h 39m
 the deno script must be run with `deno run --allow-env --allow-read deno.js`
 
 for most languages the code size is determined by use of imports, and whether a `main` function is needed
+
+# spec
+
+try to follow an existing program for code organization
+
+external programs must not be used
+
+files must be closed after read (most languages do this automatically)
+
+the output must be in a single command. there must not be any code besides string interpolation / concatenation, ie define all variables beforehand.
+
+if an official style formatter exists it must be used
+
+the readme table is sorted by sloc
