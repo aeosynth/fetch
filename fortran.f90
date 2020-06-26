@@ -2,7 +2,7 @@ PROGRAM fetch
         IMPLICIT NONE
         CHARACTER(LEN=255) :: user, hostname, kernel, term, shell, a, b
         REAL :: uptime
-        INTEGER :: d, h, m, t, f
+        INTEGER :: d, h, m
         CHARACTER(LEN=255) :: fmt
         fmt = '(A,A,A,/,A,A,/,A,A,/,A,A,/,A,I2,A,I2,A,I2,A)'
         CALL GET_ENVIRONMENT_VARIABLE("USER", user)
@@ -22,10 +22,7 @@ PROGRAM fetch
         CLOSE(12)
         OPEN(13, FILE='/proc/meminfo')
         READ(13, '(A,/,A)') a, b
-        read(a,*) t
-        read(b,*) f
         CLOSE(13)
-        WRITE(*,'(I6,/,I6)') t, f
         WRITE (*,TRIM(fmt)) TRIM(user), "@", TRIM(hostname), &
                 "kernel  ", TRIM(kernel(15:28)), &
                 "term    ", TRIM(term), &
