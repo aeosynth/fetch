@@ -3,10 +3,8 @@ host = System.hostname
 kernel = File.read("/proc/version").split[2]
 tasks = Dir.entries("/proc").count { |x| x.to_i? }
 
-mem = File.read("/proc/meminfo").lines
-def getsize(s) s.split[1].to_i // 1000 end
-total = getsize(mem[0])
-avail = getsize(mem[2])
+mem = File.read("/proc/meminfo").lines.first 3
+total, _, avail = mem.map { |x| x.split[1].to_i // 1000 }
 
 uptime = File.read("/proc/uptime").split[0].to_f
 d = (uptime / 60 / 60 / 24).to_i

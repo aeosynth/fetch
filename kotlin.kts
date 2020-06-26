@@ -7,10 +7,8 @@ val term = System.getenv("TERM")
 val shell = System.getenv("SHELL")
 val tasks = File("/proc").list().count { it.toIntOrNull() != null }
 
-val mem = File("/proc/meminfo").readLines()
-fun getSize(s: String) = s.split(Regex("\\s+"))[1].toInt() / 1000
-val total = getSize(mem[0])
-val avail = getSize(mem[2])
+val mem = File("/proc/meminfo").readLines().take(3)
+val (total, _, avail) = mem.map { it.split(Regex("\\s+"))[1].toInt() / 1000 }
 
 val uptime = File("/proc/uptime").readText().split('.')[0].toInt()
 val d = uptime / 60 / 60 / 24

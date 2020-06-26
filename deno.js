@@ -4,10 +4,10 @@ const kernel = Deno.readTextFileSync("/proc/version").split(" ")[2];
 const tasks =
   Array.from(Deno.readDirSync("/proc")).filter((x) => Number(x.name)).length;
 
-const mem = Deno.readTextFileSync("/proc/meminfo").split("\n");
-const getsize = (s) => Math.floor(Number(s.match(/\d+/)) / 1000);
-const total = getsize(mem[0]);
-const avail = getsize(mem[2]);
+const mem = Deno.readTextFileSync("/proc/meminfo").split("\n").slice(0, 3);
+const [total, _, avail] = mem.map((x) =>
+  Math.floor(Number(x.match(/\d+/))) / 1000
+);
 
 const uptime = Number(Deno.readTextFileSync("/proc/uptime").split(" ")[0]);
 const d = Math.floor(uptime / 60 / 60 / 24);

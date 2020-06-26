@@ -5,10 +5,8 @@ term = ENV["TERM"]
 shell = ENV["SHELL"]
 tasks = length(filter(x -> isa(tryparse(Int, x), Int), readdir("/proc")))
 
-mem = readlines("/proc/meminfo")
-function getsize(s) fld(parse(Int, split(s)[2]), 1000) end
-total = getsize(mem[1])
-avail = getsize(mem[3])
+mem = readlines("/proc/meminfo")[1:3]
+total, _, avail = map(x -> fld(parse(Int, split(x)[2]), 1000), mem)
 
 uptime = parse(Int, split(readlines("/proc/uptime")[1], '.')[1])
 d = trunc(Int, (uptime / 60 / 60 / 24))

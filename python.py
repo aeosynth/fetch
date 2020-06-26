@@ -9,10 +9,8 @@ host = read('/etc/hostname').rstrip()
 kernel = read('/proc/version').split()[2]
 tasks = len([x for x in os.listdir('/proc') if x.isdigit()])
 
-mem = read('/proc/meminfo').split('\n')
-def getsize(s): return int(s.split()[1]) // 1000
-total = getsize(mem[0])
-avail = getsize(mem[2])
+mem = read('/proc/meminfo').split('\n')[:3]
+(total, _, avail) = [int(x.split()[1]) // 1000 for x in mem]
 
 uptime = float(read('/proc/uptime').split()[0])
 d = int(uptime / 60 / 60 / 24)

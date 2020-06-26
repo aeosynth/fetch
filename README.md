@@ -13,17 +13,17 @@ uptime	0d 16h 39m
 
 | language | sloc |
 | - | - |
-| crystal | 19 |
-| raku | 19 |
-| ruby | 19 |
+| crystal | 17 |
+| raku | 17 |
+| ruby | 17 |
+| julia | 19 |
 | deno | 20 |
+| kotlin | 20 |
 | node | 20 |
-| julia | 21 |
+| python | 21 |
 | r | 21 |
 | janet | 22 |
-| kotlin | 22 |
 | bash | 23 |
-| python | 23 |
 | nim | 25 |
 | csharp | 30 |
 | go | 46 |
