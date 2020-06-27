@@ -1,22 +1,24 @@
 read _ _ KERNEL _ </proc/version
 
-[ -z "$HOSTNAME" ] && read HOSTNAME </etc/hostname
+read HOSTNAME </etc/hostname
 
 TASKS=0
 for dir in /proc/*; do
-  case $dir in
-  	*[0-9]*) TASKS=$((TASKS + 1)) ;;
-  esac
+  	[ "${dir##*/}" -gt -1 ] 2>/dev/null && TASKS=$((TASKS + 1))
 done
 
-set --
-
 while IFS=$'\n' read -r l; do
-	set -- $@ $l
+	set -- $l
+	case "$1" in
+		MemTotal:)
+			TOTAL=$2 ;;
+		MemAvailable:)
+			AVAIL=$2 ;;
+	esac
 done </proc/meminfo
 
-TOTAL=$(($2 / 1000))
-AVAIL=$(($8 / 1000))
+TOTAL=$(($TOTAL / 1000))
+AVAIL=$(($AVAIL / 1000))
 
 IFS=. read tmp _ </proc/uptime
 DAY=$(($tmp / 60 / 60 / 24))
