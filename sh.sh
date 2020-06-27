@@ -4,7 +4,7 @@ read HOSTNAME </etc/hostname
 
 TASKS=0
 for dir in /proc/*; do
-  	[ "${dir##*/}" -gt -1 ] 2>/dev/null && TASKS=$((TASKS + 1))
+  	[ "${dir##*/}" -gt 0 ] 2>/dev/null && TASKS=$((TASKS + 1))
 done
 
 while IFS=$'\n' read -r l; do
