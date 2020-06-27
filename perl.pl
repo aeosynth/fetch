@@ -16,8 +16,8 @@ close "f";
 open("f", "<", "/proc/meminfo");
 my @fi = <f>;
 close "f";
-( my $total ) = $fi[0] =~ /(\d+)/;
-( my $avail ) = $fi[2] =~ /(\d+)/;
+( my $total ) = ( $fi[0] =~ /(\d+)/ );
+( my $avail ) = ( $fi[2] =~ /(\d+)/ );
 
 opendir my($dh), "/proc";
 my @tasks = grep { /^[+-]?\d+$/ } readdir $dh;
