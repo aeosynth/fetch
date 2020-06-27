@@ -27,6 +27,7 @@ uptime	0d 16h 39m
 | nim | 25 |
 | sh | 28 |
 | csharp | 30 |
+| perl | 36 |
 | go | 46 |
 | rust | 61 |
 
