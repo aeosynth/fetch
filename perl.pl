@@ -36,7 +36,7 @@ print $user . "@" . $hostname
 	. "kernel\t" . $version[2]
 	. "\nterm\t" . $term
 	. "\nshell\t" . $shell
-	. "\ntasks\t" . ($#tasks + 1)
+	. "\ntasks\t" . $tasks
 	. "\nmem\t" . $avail . "m / " . $total . "m"
 	. "\nuptime\t" . $d . "d " . $h . "h " . $m . "m"
 	. "\n";
