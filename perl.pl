@@ -1,6 +1,3 @@
-use strict;
-use warnings;
-
 sub ffetch {
 	open("f", "<", $_[0]) or die $!;
 	my @r = <f>;
@@ -8,7 +5,7 @@ sub ffetch {
 	return @r;
 }
 
-my @hostname = ffetch("/etc/hostname");
+my @hostname = ffetch("/etc/hostname") ;
 my @version = split / /, (ffetch("/proc/version"))[0];
 my @times = split / /, (ffetch("/proc/uptime"))[0];
 my @fi = ffetch("/proc/meminfo");
@@ -16,7 +13,7 @@ my @fi = ffetch("/proc/meminfo");
 ( my $total ) = ( $fi[0] =~ /(\d+)/ );
 ( my $avail ) = ( $fi[2] =~ /(\d+)/ );
 
-opendir my($dh), "/proc";
+opendir my($dh), "/proc" or die $!;
 my @tasks = grep { /^[+-]?\d+$/ } readdir $dh;
 closedir $dh;
 
