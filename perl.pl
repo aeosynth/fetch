@@ -1,21 +1,18 @@
 use strict;
 use warnings;
 
-open("f", "<", "/etc/hostname");
-my $hostname = <f>;
-close "f";
+sub ffetch {
+	open("f", "<", $_[0]) or die $!;
+	my @r = <f>;
+	close "f";
+	return @r;
+}
 
-open("f", "<", "/proc/version");
-my @version = split / /, <f>;
-close "f";
+my @hostname = ffetch("/etc/hostname");
+my @version = split / /, (ffetch("/proc/version"))[0];
+my @times = split / /, (ffetch("/proc/uptime"))[0];
+my @fi = ffetch("/proc/meminfo");
 
-open("f", "<", "/proc/uptime");
-my @times = split / /, <f>;
-close "f";
-
-open("f", "<", "/proc/meminfo");
-my @fi = <f>;
-close "f";
 ( my $total ) = ( $fi[0] =~ /(\d+)/ );
 ( my $avail ) = ( $fi[2] =~ /(\d+)/ );
 
@@ -32,7 +29,7 @@ $avail = int($avail / 1000);
 my $d = int((($times[0] / 60) / 60) / 24);
 my $h = (($times[0] / 60) / 60) % 24;
 my $m = ($times[0] / 60) % 60;
-print $user . "@" . $hostname
+print $user . "@" . $hostname[0]
 	. "kernel\t" . $version[2]
 	. "\nterm\t" . $term
 	. "\nshell\t" . $shell
