@@ -5,29 +5,23 @@ sub ffetch {
 	return @r;
 }
 
-my @hostname = ffetch("/etc/hostname") ;
-my @version = split / /, (ffetch("/proc/version"))[0];
+my $hostname = (ffetch("/etc/hostname"))[0];
+my $version = (split / /, (ffetch("/proc/version"))[0])[2];
 my @times = split / /, (ffetch("/proc/uptime"))[0];
 my @fi = ffetch("/proc/meminfo");
 
-( my $total ) = ( $fi[0] =~ /(\d+)/ );
-( my $avail ) = ( $fi[2] =~ /(\d+)/ );
+my ($total, $avail) = (int(( $fi[0] =~ /(\d+)/ )[0] / 1000), int(( $fi[2] =~ /(\d+)/ )[0] / 1000));
 
 opendir my($dh), "/proc" or die $!;
-my @tasks = grep { /^[+-]?\d+$/ } readdir $dh;
+my $tasks = scalar (grep { /\d+$/ } readdir $dh);
 closedir $dh;
 
-my $user = $ENV{'USER'};
-my $term = $ENV{'TERM'};
-my $shell = $ENV{'SHELL'};
-my $tasks = $#tasks + 1;
-$total = int($total / 1000);
-$avail = int($avail / 1000);
+my ($user, $term, $shell) = ($ENV{'USER'}, $ENV{'TERM'}, $ENV{'SHELL'});
 my $d = int((($times[0] / 60) / 60) / 24);
 my $h = (($times[0] / 60) / 60) % 24;
 my $m = ($times[0] / 60) % 60;
-print $user . "@" . $hostname[0]
-	. "kernel\t" . $version[2]
+print $user . "@" . $hostname
+	. "kernel\t" . $version
 	. "\nterm\t" . $term
 	. "\nshell\t" . $shell
 	. "\ntasks\t" . $tasks
