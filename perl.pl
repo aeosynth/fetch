@@ -16,7 +16,9 @@ opendir my($dh), "/proc" or die $!;
 my $tasks = scalar (grep { /\d+$/ } readdir $dh);
 closedir $dh;
 
-my ($user, $term, $shell) = ($ENV{'USER'}, $ENV{'TERM'}, $ENV{'SHELL'});
+my $user = $ENV{'USER'}
+my $term = $ENV{'TERM'}
+my $shell = $ENV{'SHELL'}
 my $d = int((($times[0] / 60) / 60) / 24);
 my $h = (($times[0] / 60) / 60) % 24;
 my $m = ($times[0] / 60) % 60;
