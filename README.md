@@ -25,9 +25,9 @@ uptime	0d 16h 39m
 | janet | 22 |
 | bash | 23 |
 | nim | 25 |
+| perl | 26 |
 | sh | 28 |
 | csharp | 30 |
-| perl | 32 |
 | go | 46 |
 | rust | 61 |
 
